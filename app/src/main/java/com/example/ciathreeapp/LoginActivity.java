@@ -58,8 +58,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 Intent intent2 = new Intent(LoginActivity.this, LoginSuccess.class);
                 startActivity(intent2);
-                // Navigate to the main banking activity
-                // You would implement this part according to your app's structure
+
             }
         });
     }

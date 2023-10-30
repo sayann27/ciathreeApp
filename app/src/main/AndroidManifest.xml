@@ -26,6 +26,9 @@
         <activity android:name=".LoginSuccess"
             android:label="@string/app_name">
         </activity>
+        <activity android:name=".RegistrationActivity"
+            android:label="@string/app_name">
+        </activity>
     </application>
 
 </manifest>
