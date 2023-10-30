@@ -74,4 +74,9 @@
         android:layout_height="wrap_content"
         android:text="Register"
         android:id="@+id/registerButton"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show existing data"
+        android:id="@+id/displayButton"/>
 </LinearLayout>

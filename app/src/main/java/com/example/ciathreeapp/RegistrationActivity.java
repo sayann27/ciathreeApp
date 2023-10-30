@@ -1,10 +1,16 @@
 package com.example.ciathreeapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.app.PendingIntent;
 import android.content.ContentValues;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +25,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText nameEditText, ageEditText, phoneNumberEditText, mailIdEditText, aadharEditText, addressEditText;
     private EditText registrationNumberEditText, employeeIdEditText, customerIdEditText, dateTimeEditText;
     private Button registerButton;
+    private Button displayButton;
     private DatabaseHelper dbHelper;
 
     @Override
@@ -39,6 +46,7 @@ public class RegistrationActivity extends AppCompatActivity {
         dateTimeEditText = findViewById(R.id.dateTimeEditText);
 
         registerButton = findViewById(R.id.registerButton);
+        displayButton = findViewById(R.id.displayButton);
 
     //Task 2
         // Generate registration number, employee ID, and customer ID (for demonstration purposes)
@@ -58,6 +66,13 @@ public class RegistrationActivity extends AppCompatActivity {
 
         dbHelper = new DatabaseHelper(this);
 
+        displayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent3 = new Intent(RegistrationActivity.this, RetrieveActivity.class);
+                startActivity(intent3);
+            }
+        });
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,7 +103,24 @@ public class RegistrationActivity extends AppCompatActivity {
                     // Insert failed
                     Toast.makeText(RegistrationActivity.this, "Could not save the record", Toast.LENGTH_LONG).show();
                 }
+
+                sendSMS(phone);
             }
         });
+    }
+    private void sendSMS(String phoneNumber) {
+        String message = "YOU ARE REGISTERED WITH OUR APP";
+        SmsManager smsManager = SmsManager.getDefault();
+        PendingIntent sentIntent = PendingIntent.getBroadcast(this, 0, new Intent("SMS_SENT"), PendingIntent.FLAG_IMMUTABLE);
+        PendingIntent deliveredIntent = PendingIntent.getBroadcast(this, 0, new Intent("SMS_DELIVERED"), PendingIntent.FLAG_IMMUTABLE);
+
+        try {
+            smsManager.sendTextMessage(phoneNumber, null, message, sentIntent, deliveredIntent);
+            Toast.makeText(this, "SMS sent", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "SMS sending failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
     }
 }

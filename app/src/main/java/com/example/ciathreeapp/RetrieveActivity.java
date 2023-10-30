@@ -40,8 +40,12 @@ public class RetrieveActivity extends AppCompatActivity {
             do {
                 String name = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME));
                 int age = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COLUMN_AGE));
+                String phone = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_PHONE));
+                String mail = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_EMAIL));
+                String aadhaar = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_AADHAAR));
+                String address = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_ADDRESS));
                 // Retrieve other fields as needed and create a DataItem object
-                DataItem dataItem = new DataItem(name, age);
+                DataItem dataItem = new DataItem(name, age, phone, mail, aadhaar, address);
                 dataItemList.add(dataItem);
             } while (cursor.moveToNext());
         }

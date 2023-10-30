@@ -7,12 +7,16 @@ public class DataItem {
     private String mail;
     private String aadhaar;
     private String address;
-    // Add more fields for other data
 
-    public DataItem(String name, int age) {
+
+    public DataItem(String name, int age,String phone,String mail,String aadhaar,String address) {
         this.name = name;
         this.age = age;
-        // Initialize other fields as needed
+        this.phone = phone;
+        this.mail = mail;
+        this.aadhaar = aadhaar;
+        this.address = address;
+
     }
 
     public String getName() {
