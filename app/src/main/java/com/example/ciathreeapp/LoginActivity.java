@@ -1,5 +1,6 @@
 package com.example.ciathreeapp;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText usernameEditText, passwordEditText;
     private Button loginButton;
     private SharedPreferences sharedPreferences;
+    private Button registrationButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
         usernameEditText = findViewById(R.id.usernameEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
+        registrationButton = findViewById(R.id.registrationButton);
 
         // Initialize shared preferences
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
@@ -34,7 +37,13 @@ public class LoginActivity extends AppCompatActivity {
             usernameEditText.setText(savedUsername);
             passwordEditText.setText(savedPassword);
         }
-
+        registrationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
+                startActivity(intent);
+            }
+        });
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,6 +56,8 @@ public class LoginActivity extends AppCompatActivity {
                 editor.putString("password", password);
                 editor.apply();
 
+                Intent intent2 = new Intent(LoginActivity.this, LoginSuccess.class);
+                startActivity(intent2);
                 // Navigate to the main banking activity
                 // You would implement this part according to your app's structure
             }
