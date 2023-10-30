@@ -5,8 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    public static final String TABLE_NAME = "registrationn";
-    private static final String DATABASE_NAME = "RegistrationDB";
+    public static final String TABLE_NAME = "registration";
+    private static final String DATABASE_NAME = "RegistrationAppDB";
     private static final int DATABASE_VERSION = 1;
 
     // Define the table and its columns
@@ -17,7 +17,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String COLUMN_PHONE = "phone";
     public static final String COLUMN_EMAIL = "email";
-    public static final String COLUMN_AADHAAR = "aadhaar";
+    public static final String COLUMN_AADHAAR = "adhaar";
     public static final String COLUMN_ADDRESS = "address";
 
 
